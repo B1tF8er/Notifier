@@ -7,16 +7,16 @@ namespace Notifier
     public static class Program
     {
         private static readonly IList<INotification> notificationServices = new List<INotification>
-    {
-        new EmailNotification(),
-        new SmsNotification()
-    };
+        {
+            new EmailNotification(),
+            new SmsNotification()
+        };
 
         private static readonly IList<IGreeter> greeters = new List<IGreeter>
-    {
-        new SpanishGreeter(notificationServices),
-        new EnglishGreeter(notificationServices)
-    };
+        {
+            new SpanishGreeter(notificationServices),
+            new EnglishGreeter(notificationServices)
+        };
 
         private static readonly string separator = new string('+', 20);
 
