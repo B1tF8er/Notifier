@@ -13,7 +13,7 @@ namespace Notifier
 
         public void Send(string message)
         {
-            Console.WriteLine($"{message} via SMS");
+            Console.WriteLine($"{message} via SMS using the cell phone number {Number}");
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Notifier
 
         public void Send(string message)
         {
-            Console.WriteLine($"{message} via Email");
+            Console.WriteLine($"{message} via Email using port {Port} and from {FromAddress}");
         }
     }
 }
