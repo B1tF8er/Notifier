@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 
 namespace Notifier
 {
@@ -18,20 +18,29 @@ namespace Notifier
             new EnglishGreeter(notificationServices)
         };
 
-        private static readonly string separator = new string('+', 20);
+        private static readonly string separator = new string('+', 30);
 
-        private static readonly Action<IGreeter> SayHello = (greeter) =>
+        public static async Task Main()
+        {
+            foreach (var greeter in greeters)
+            {
+                Header(greeter);
+                await greeter.SayHello().ConfigureAwait(false);
+                Footer();
+            }
+        }
+
+        private static void Header(IGreeter greeter)
         {
             Console.WriteLine(separator);
             Console.WriteLine($"-- {greeter.GetType()} --");
             Console.WriteLine(separator);
+        }
 
-            greeter.SayHello();
-
+        private static void Footer()
+        {
             Console.WriteLine();
             Console.WriteLine();
-        };
-
-        public static void Main() => greeters.ToList().ForEach(SayHello);
+        }
     }
 }

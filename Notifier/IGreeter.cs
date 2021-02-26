@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Notifier
 {
@@ -8,6 +9,6 @@ namespace Notifier
 
         string Greeting { get; }
 
-        void SayHello();
+        Task SayHello();
     }
 }

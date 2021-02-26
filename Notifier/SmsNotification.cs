@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace Notifier
 {
@@ -11,8 +12,9 @@ namespace Notifier
             Number = 1234568790;
         }
 
-        public void Send(string message)
+        public async Task Send(string message)
         {
+            await Task.Delay(100).ConfigureAwait(false);
             Console.WriteLine($"{message} via SMS using the cell phone number {Number}");
         }
     }

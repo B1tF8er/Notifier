@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Notifier
 {
@@ -14,11 +15,11 @@ namespace Notifier
             Greeting = "Hola Mundo";
         }
 
-        public void SayHello()
+        public async Task SayHello()
         {
             foreach (var notificationService in NotificationServices)
             {
-                notificationService.Send(Greeting);
+                await notificationService.Send(Greeting).ConfigureAwait(false);
             }
         }
     }

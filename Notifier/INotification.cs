@@ -1,7 +1,9 @@
-﻿namespace Notifier
+﻿using System.Threading.Tasks;
+
+namespace Notifier
 {
     public interface INotification
     {
-        void Send(string message);
+        Task Send(string message);
     }
 }

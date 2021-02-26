@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace Notifier
 {
@@ -14,8 +15,9 @@ namespace Notifier
             FromAddress = "some@domain.com";
         }
 
-        public void Send(string message)
+        public async Task Send(string message)
         {
+            await Task.Delay(100).ConfigureAwait(false);
             Console.WriteLine($"{message} via Email using port {Port} and from {FromAddress}");
         }
     }
