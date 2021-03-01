@@ -9,7 +9,9 @@ namespace Notifier
         private static readonly IList<INotification> notificationServices = new List<INotification>
         {
             new EmailNotification(),
-            new SmsNotification()
+            new SmsNotification(),
+            new GuiNotification(),
+            new SqlNotification()
         };
 
         private static readonly IList<IGreeter> greeters = new List<IGreeter>
