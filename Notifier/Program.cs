@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Notifier.Contracts;
+using Notifier.Services;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

@@ -1,18 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using Notifier.Contracts;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Notifier
+namespace Notifier.Services
 {
-    public class SpanishGreeter : IGreeter
+    public class EnglishGreeter : IGreeter
     {
         public IList<INotification> NotificationServices { get; }
 
         public string Greeting { get; }
 
-        public SpanishGreeter(IList<INotification> notificationServices)
+        public EnglishGreeter(IList<INotification> notificationServices)
         {
             NotificationServices = notificationServices;
-            Greeting = "Hola Mundo";
+            Greeting = "Hello World";
         }
 
         public async Task SayHello()

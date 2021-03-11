@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Notifier
+namespace Notifier.Contracts
 {
     public interface IGreeter
     {

@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Notifier.Contracts;
+using System;
 using System.Threading.Tasks;
 
-namespace Notifier
+namespace Notifier.Services
 {
     public class GuiNotification : INotification
     {

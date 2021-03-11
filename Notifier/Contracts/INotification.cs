@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Notifier
+namespace Notifier.Contracts
 {
     public interface INotification
     {
