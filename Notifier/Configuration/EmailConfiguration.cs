@@ -13,5 +13,8 @@ namespace Notifier.Configuration
         public string User => "someone";
 
         public string Password => "5up3r53cur3";
+
+        public override string ToString() =>
+            $"Port: {Port} - From: {FromAddress} - To: {ToAddress} - Credentials: [{User}:{Password}]";
     }
 }

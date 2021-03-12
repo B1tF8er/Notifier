@@ -14,7 +14,7 @@ namespace Notifier.Services
         public async Task Send(string message)
         {
             await Task.Delay(100).ConfigureAwait(false);
-            Console.WriteLine($"{message} via SMS using the cell phone number {smsConfiguration.Number}");
+            Console.WriteLine($"{message} via SMS with: {smsConfiguration}");
         }
     }
 }

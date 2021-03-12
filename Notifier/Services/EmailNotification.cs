@@ -14,7 +14,7 @@ namespace Notifier.Services
         public async Task Send(string message)
         {
             await Task.Delay(100).ConfigureAwait(false);
-            Console.WriteLine($"{message} via Email using port {emailConfiguration.Port} and from {emailConfiguration.FromAddress} to {emailConfiguration.ToAddress} with credentials [{emailConfiguration.User}:{emailConfiguration.Password}]");
+            Console.WriteLine($"{message} via Email with: {emailConfiguration}");
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Notifier.Services
         public async Task Send(string message)
         {
             await Task.Delay(100).ConfigureAwait(false);
-            Console.WriteLine($"{message} via SQL using port {sqlConfiguration.Port} and server {sqlConfiguration.Server} with credentials [{sqlConfiguration.User}:{sqlConfiguration.Password}]");
+            Console.WriteLine($"{message} via SQL with: {sqlConfiguration}");
         }
     }
 }

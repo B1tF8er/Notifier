@@ -1,5 +1,4 @@
 ﻿using Notifier.Contracts;
-using System;
 
 namespace Notifier.Configuration
 {
@@ -12,5 +11,8 @@ namespace Notifier.Configuration
         public string User => "someone";
 
         public string Password => "5up3r53cur3";
+
+        public override string ToString() =>
+            $"Port: {Port} - Server: {Server} - Credentials: [{User}:{Password}]";
     }
 }
