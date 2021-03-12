@@ -8,6 +8,11 @@ namespace Notifier.Services
     {
         public async Task Send(string message)
         {
+            if (string.IsNullOrWhiteSpace(message))
+            {
+                throw new ArgumentNullException(nameof(message), "Message cannot be empty.");
+            }
+
             await Task.Delay(100).ConfigureAwait(false);
             Console.WriteLine($"{message} via GUI");
         }
