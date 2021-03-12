@@ -1,4 +1,5 @@
-﻿using Notifier.Contracts;
+﻿using Notifier.Configuration;
+using Notifier.Contracts;
 using Notifier.Services;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,10 @@ namespace Notifier
     {
         private static readonly IList<INotification> notificationServices = new List<INotification>
         {
-            new EmailNotification(),
-            new SmsNotification(),
             new GuiNotification(),
-            new SqlNotification()
+            new EmailNotification(new EmailConfiguration()),
+            new SmsNotification(new SmsConfiguration()),
+            new SqlNotification(new SqlConfiguration())
         };
 
         private static readonly IList<IGreeter> greeters = new List<IGreeter>

@@ -4,28 +4,17 @@ using System.Threading.Tasks;
 
 namespace Notifier.Services
 {
-    public class SqlNotification : INotification, ISqlConfiguration
+    public class SqlNotification : INotification
     {
-        public int Port { get; }
+        private readonly ISqlConfiguration sqlConfiguration;
 
-        public string Server { get; }
-
-        public string User { get; }
-
-        public string Password { get; }
-
-        public SqlNotification()
-        {
-            Port = 440;
-            Server = "localhost";
-            User = "someone";
-            Password = "5up3r53cur3";
-        }
+        public SqlNotification(ISqlConfiguration sqlConfiguration) =>
+            this.sqlConfiguration = sqlConfiguration;
 
         public async Task Send(string message)
         {
             await Task.Delay(100).ConfigureAwait(false);
-            Console.WriteLine($"{message} via SQL using port {Port} and server {Server} with credentials [{User}:{Password}]");
+            Console.WriteLine($"{message} via SQL using port {sqlConfiguration.Port} and server {sqlConfiguration.Server} with credentials [{sqlConfiguration.User}:{sqlConfiguration.Password}]");
         }
     }
 }

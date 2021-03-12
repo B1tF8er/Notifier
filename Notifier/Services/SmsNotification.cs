@@ -4,19 +4,17 @@ using System.Threading.Tasks;
 
 namespace Notifier.Services
 {
-    public class SmsNotification : INotification, ISmsConfiguration
+    public class SmsNotification : INotification
     {
-        public int Number { get; }
+        private readonly ISmsConfiguration smsConfiguration;
 
-        public SmsNotification()
-        {
-            Number = 1234568790;
-        }
+        public SmsNotification(ISmsConfiguration smsConfiguration) =>
+            this.smsConfiguration = smsConfiguration;
 
         public async Task Send(string message)
         {
             await Task.Delay(100).ConfigureAwait(false);
-            Console.WriteLine($"{message} via SMS using the cell phone number {Number}");
+            Console.WriteLine($"{message} via SMS using the cell phone number {smsConfiguration.Number}");
         }
     }
 }
