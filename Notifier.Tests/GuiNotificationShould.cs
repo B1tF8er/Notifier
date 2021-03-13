@@ -2,6 +2,7 @@
 using Notifier.Contracts;
 using Notifier.Services;
 using System;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Notifier.Tests
@@ -47,6 +48,19 @@ namespace Notifier.Tests
             await Assert.ThrowsAsync<ArgumentNullException>(() =>
                 sut.Object.Send(message)
             );
+        }
+
+        [Fact]
+        public async void Call_Write_Once()
+        {
+            const string Message = "Test";
+            const string MessageSent = "Test via GUI";
+
+            messageWriter.Setup(it => it.Write(MessageSent)).Returns(Task.CompletedTask);
+
+            await sut.Object.Send(Message).ConfigureAwait(false);
+
+            messageWriter.Verify(it => it.Write(MessageSent), Times.Once);
         }
     }
 }
