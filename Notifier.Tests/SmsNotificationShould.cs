@@ -10,13 +10,19 @@ namespace Notifier.Tests
     {
         private readonly Mock<ISmsConfiguration> smsConfiguration;
 
+        private readonly Mock<IMessageWriter> messageWriter;
+
         private readonly Mock<SmsNotification> sut;
 
         public SmsNotificationShould()
         {
             smsConfiguration = new Mock<ISmsConfiguration>();
+            messageWriter = new Mock<IMessageWriter>();
 
-            sut = new Mock<SmsNotification>(smsConfiguration.Object);
+            sut = new Mock<SmsNotification>(
+                smsConfiguration.Object,
+                messageWriter.Object
+            );
         }
 
         [Fact]

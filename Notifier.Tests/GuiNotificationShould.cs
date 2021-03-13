@@ -1,4 +1,5 @@
 ﻿using Moq;
+using Notifier.Contracts;
 using Notifier.Services;
 using System;
 using Xunit;
@@ -7,11 +8,15 @@ namespace Notifier.Tests
 {
     public class GuiNotificationShould
     {
+        private readonly Mock<IMessageWriter> messageWriter;
+
         private readonly Mock<GuiNotification> sut;
 
         public GuiNotificationShould()
         {
-            sut = new Mock<GuiNotification>();
+            messageWriter = new Mock<IMessageWriter>();
+
+            sut = new Mock<GuiNotification>(messageWriter.Object);
         }
 
         [Fact]

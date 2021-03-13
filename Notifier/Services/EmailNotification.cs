@@ -8,8 +8,10 @@ namespace Notifier.Services
     {
         private readonly IEmailConfiguration emailConfiguration;
 
-        public EmailNotification(IEmailConfiguration emailConfiguration) =>
-            this.emailConfiguration = emailConfiguration;
+        private readonly IMessageWriter messageWriter;
+
+        public EmailNotification(IEmailConfiguration emailConfiguration, IMessageWriter messageWriter) =>
+            (this.emailConfiguration, this.messageWriter) = (emailConfiguration, messageWriter);
 
         public async Task Send(string message)
         {
@@ -18,8 +20,9 @@ namespace Notifier.Services
                 throw new ArgumentNullException(nameof(message), "Message cannot be empty.");
             }
 
-            await Task.Delay(100).ConfigureAwait(false);
-            Console.WriteLine($"{message} via Email with: {emailConfiguration}");
+            await messageWriter
+                .Write($"{message} via Email with: {emailConfiguration}")
+                .ConfigureAwait(false);
         }
     }
 }

@@ -10,13 +10,19 @@ namespace Notifier.Tests
     {
         private readonly Mock<IEmailConfiguration> emailConfiguration;
 
+        private readonly Mock<IMessageWriter> messageWriter;
+
         private readonly Mock<EmailNotification> sut;
 
         public EmailNotificationShould()
         {
             emailConfiguration = new Mock<IEmailConfiguration>();
+            messageWriter = new Mock<IMessageWriter>();
 
-            sut = new Mock<EmailNotification>(emailConfiguration.Object);
+            sut = new Mock<EmailNotification>(
+                emailConfiguration.Object,
+                messageWriter.Object
+            );
         }
 
         [Fact]

@@ -8,8 +8,10 @@ namespace Notifier.Services
     {
         private readonly ISmsConfiguration smsConfiguration;
 
-        public SmsNotification(ISmsConfiguration smsConfiguration) =>
-            this.smsConfiguration = smsConfiguration;
+        private readonly IMessageWriter messageWriter;
+
+        public SmsNotification(ISmsConfiguration smsConfiguration, IMessageWriter messageWriter) =>
+            (this.smsConfiguration, this.messageWriter) = (smsConfiguration, messageWriter);
 
         public async Task Send(string message)
         {
@@ -18,8 +20,9 @@ namespace Notifier.Services
                 throw new ArgumentNullException(nameof(message), "Message cannot be empty.");
             }
 
-            await Task.Delay(100).ConfigureAwait(false);
-            Console.WriteLine($"{message} via SMS with: {smsConfiguration}");
+            await messageWriter
+                .Write($"{message} via SMS with: {smsConfiguration}")
+                .ConfigureAwait(false);
         }
     }
 }

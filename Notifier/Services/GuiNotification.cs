@@ -6,6 +6,11 @@ namespace Notifier.Services
 {
     public class GuiNotification : INotification
     {
+        private readonly IMessageWriter messageWriter;
+
+        public GuiNotification(IMessageWriter messageWriter) =>
+            this.messageWriter = messageWriter;
+
         public async Task Send(string message)
         {
             if (string.IsNullOrWhiteSpace(message))
@@ -13,8 +18,9 @@ namespace Notifier.Services
                 throw new ArgumentNullException(nameof(message), "Message cannot be empty.");
             }
 
-            await Task.Delay(100).ConfigureAwait(false);
-            Console.WriteLine($"{message} via GUI");
+            await messageWriter
+                .Write($"{message} via GUI")
+                .ConfigureAwait(false);
         }
     }
 }

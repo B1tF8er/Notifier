@@ -8,8 +8,10 @@ namespace Notifier.Services
     {
         private readonly ISqlConfiguration sqlConfiguration;
 
-        public SqlNotification(ISqlConfiguration sqlConfiguration) =>
-            this.sqlConfiguration = sqlConfiguration;
+        private readonly IMessageWriter messageWriter;
+
+        public SqlNotification(ISqlConfiguration sqlConfiguration, IMessageWriter messageWriter) =>
+            (this.sqlConfiguration, this.messageWriter) = (sqlConfiguration, messageWriter);
 
         public async Task Send(string message)
         {
@@ -18,8 +20,9 @@ namespace Notifier.Services
                 throw new ArgumentNullException(nameof(message), "Message cannot be empty.");
             }
 
-            await Task.Delay(100).ConfigureAwait(false);
-            Console.WriteLine($"{message} via SQL with: {sqlConfiguration}");
+            await messageWriter
+                .Write($"{message} via SQL with: {sqlConfiguration}")
+                .ConfigureAwait(false);
         }
     }
 }

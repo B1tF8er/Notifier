@@ -10,13 +10,19 @@ namespace Notifier.Tests
     {
         private readonly Mock<ISqlConfiguration> sqlConfiguration;
 
+        private readonly Mock<IMessageWriter> messageWriter;
+
         private readonly Mock<SqlNotification> sut;
 
         public SqlNotificationShould()
         {
             sqlConfiguration = new Mock<ISqlConfiguration>();
+            messageWriter = new Mock<IMessageWriter>();
 
-            sut = new Mock<SqlNotification>(sqlConfiguration.Object);
+            sut = new Mock<SqlNotification>(
+                sqlConfiguration.Object,
+                messageWriter.Object
+            );
         }
 
         [Fact]

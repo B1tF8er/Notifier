@@ -9,12 +9,14 @@ namespace Notifier
 {
     public static class Program
     {
+        private static readonly ConsoleMessageWriter consoleMessageWriter = new ConsoleMessageWriter();
+
         private static readonly IList<INotification> notificationServices = new List<INotification>
         {
-            new GuiNotification(),
-            new EmailNotification(new EmailConfiguration()),
-            new SmsNotification(new SmsConfiguration()),
-            new SqlNotification(new SqlConfiguration())
+            new GuiNotification(consoleMessageWriter),
+            new EmailNotification(new EmailConfiguration(), consoleMessageWriter),
+            new SmsNotification(new SmsConfiguration(), consoleMessageWriter),
+            new SqlNotification(new SqlConfiguration(), consoleMessageWriter)
         };
 
         private static readonly IList<IGreeter> greeters = new List<IGreeter>
