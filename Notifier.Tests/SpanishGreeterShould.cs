@@ -37,12 +37,11 @@ namespace Notifier.Tests
             var services = Enumerable.Repeat(notificationService.Object, maxNumberOfServices);
 
             notificationServices.Setup(it => it.GetEnumerator()).Returns(services.GetEnumerator());
-            notificationServices.SetupGet(it => it.Count).Returns(maxNumberOfServices);
             notificationService.Setup(it => it.Send(Hello)).Returns(Task.CompletedTask);
 
             await sut.Object.SayHello().ConfigureAwait(false);
 
-            notificationService.Verify(it => it.Send(Hello), Times.Exactly(notificationServices.Object.Count));
+            notificationService.Verify(it => it.Send(Hello), Times.Exactly(maxNumberOfServices));
         }
     }
 }
