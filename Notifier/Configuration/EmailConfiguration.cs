@@ -1,18 +1,19 @@
 ﻿using Notifier.Contracts;
+using Notifier.Models;
 
 namespace Notifier.Configuration
 {
     public class EmailConfiguration : IEmailConfiguration
     {
-        public int Port => 8000;
+        public SmptPort Port => SmptPort.Create(2525);
 
-        public string FromAddress => "some@domain.com";
+        public EmailAddress FromAddress => EmailAddress.Create("some@domain.com");
 
-        public string ToAddress => "other@domain.com";
+        public EmailAddress ToAddress => EmailAddress.Create("other@domain.com");
 
-        public string User => "someone";
+        public User User => User.Create("someone");
 
-        public string Password => "5up3r53cur3";
+        public Password Password => Password.Create("5up3r53cur3");
 
         public override string ToString() =>
             $"Port: {Port} - From: {FromAddress} - To: {ToAddress} - Credentials: [{User}:{Password}]";

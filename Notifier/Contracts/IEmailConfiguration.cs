@@ -1,15 +1,17 @@
-﻿namespace Notifier.Contracts
+﻿using Notifier.Models;
+
+namespace Notifier.Contracts
 {
     public interface IEmailConfiguration
     {
-        int Port { get; }
+        SmptPort Port { get; }
 
-        string FromAddress { get; }
+        EmailAddress FromAddress { get; }
 
-        string ToAddress { get; }
+        EmailAddress ToAddress { get; }
 
-        string User { get; }
+        User User { get; }
 
-        string Password { get; }
+        Password Password { get; }
     }
 }
