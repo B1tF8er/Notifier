@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using static Notifier.Helpers.Constants.Patterns;
 
 namespace Notifier.Models
 {
@@ -24,12 +25,14 @@ namespace Notifier.Models
 
             var match = Regex.Match(
                 emailAddress,
-                @"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$",
+                EmailRegex,
                 RegexOptions.Compiled | RegexOptions.IgnoreCase
             );
 
             if (!match.Success)
-                throw new ArgumentException("Invalid Email address format", nameof(emailAddress));
+            {
+                throw new ArgumentException("Invalid email address format", nameof(emailAddress));
+            }
         }
 
         public static implicit operator string(EmailAddress emailAddress) => emailAddress.value;

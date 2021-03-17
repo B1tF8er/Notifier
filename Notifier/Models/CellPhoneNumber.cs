@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using static Notifier.Helpers.Constants.Patterns;
 
 namespace Notifier.Models
 {
@@ -33,8 +34,8 @@ namespace Notifier.Models
 
             var match = Regex.Match(
                 cellPhoneNumber,
-                @"^(\+\s?)?((?<!\+.*)\(\+?\d+([\s\-\.]?\d+)?\)|\d+)([\s\-\.]?(\(\d+([\s\-\.]?\d+)?\)|\d+))*(\s?(x|ext\.?)\s?\d+)?$",
-                RegexOptions.Compiled | RegexOptions.IgnoreCase
+                CellPhoneNumberRegex,
+                RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture
             );
 
             if (!match.Success)
