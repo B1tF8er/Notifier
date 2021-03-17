@@ -1,7 +1,9 @@
-﻿namespace Notifier.Contracts
+﻿using Notifier.Models;
+
+namespace Notifier.Contracts
 {
     public interface ISmsConfiguration
     {
-        int Number { get; }
+        CellPhoneNumber Number { get; }
     }
 }
