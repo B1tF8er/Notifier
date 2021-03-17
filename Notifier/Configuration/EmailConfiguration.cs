@@ -5,15 +5,24 @@ namespace Notifier.Configuration
 {
     public class EmailConfiguration : IEmailConfiguration
     {
-        public SmptPort Port => SmptPort.Create(2525);
+        public SmptPort Port { get; }
 
-        public EmailAddress FromAddress => EmailAddress.Create("some@domain.com");
+        public EmailAddress FromAddress { get; }
 
-        public EmailAddress ToAddress => EmailAddress.Create("other@domain.com");
+        public EmailAddress ToAddress { get; }
 
-        public User User => User.Create("someone");
+        public User User { get; }
 
-        public Password Password => Password.Create("5up3r53cur3");
+        public Password Password { get; }
+
+        public EmailConfiguration()
+        {
+            Port = SmptPort.Create(2525);
+            FromAddress = EmailAddress.Create("some@domain.com");
+            ToAddress = EmailAddress.Create("other@domain.com");
+            User = User.Create("someone");
+            Password = Password.Create("5up3r53cur3");
+        }
 
         public override string ToString() =>
             $"Port: {Port} - From: {FromAddress} - To: {ToAddress} - Credentials: [{User}:{Password}]";
