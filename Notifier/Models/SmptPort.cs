@@ -24,7 +24,7 @@ namespace Notifier.Models
 
             if (!isValidPort)
             {
-                throw new ArgumentOutOfRangeException(nameof(smptPort), "SMPT Port is not valid");
+                throw new ArgumentOutOfRangeException(nameof(smptPort), "SMPT port is not valid");
             }
         }
 

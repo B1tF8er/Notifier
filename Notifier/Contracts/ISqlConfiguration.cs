@@ -1,13 +1,15 @@
-﻿namespace Notifier.Contracts
+﻿using Notifier.Models;
+
+namespace Notifier.Contracts
 {
     public interface ISqlConfiguration
     {
-        int Port { get; }
+        SqlServerPort Port { get; }
 
-        string Server { get; }
+        Server Server { get; }
 
-        string User { get; }
+        User User { get; }
 
-        string Password { get; }
+        Password Password { get; }
     }
 }
