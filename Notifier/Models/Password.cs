@@ -16,7 +16,7 @@ namespace Notifier.Models
             return new Password(password);
         }
 
-        public static void Guard(string password)
+        private static void Guard(string password)
         {
             if (string.IsNullOrWhiteSpace(password))
             {

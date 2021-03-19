@@ -10,7 +10,7 @@ namespace Notifier.Models
 
         private readonly string value;
 
-        public CellPhoneNumber(string cellPhoneNumber) => value = cellPhoneNumber;
+        private CellPhoneNumber(string cellPhoneNumber) => value = cellPhoneNumber;
 
         public static CellPhoneNumber Create(string cellPhoneNumber)
         {

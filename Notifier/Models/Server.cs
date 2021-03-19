@@ -14,7 +14,7 @@ namespace Notifier.Models
             return new Server(server);
         }
 
-        public static void Guard(string server)
+        private static void Guard(string server)
         {
             if (string.IsNullOrWhiteSpace(server))
             {

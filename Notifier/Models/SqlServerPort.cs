@@ -18,7 +18,7 @@ namespace Notifier.Models
             return new SqlServerPort(sqlServerPort);
         }
 
-        public static void Guard(int sqlServerPort)
+        private static void Guard(int sqlServerPort)
         {
             var isValidPort = validPorts.Any(port => port == sqlServerPort);
 

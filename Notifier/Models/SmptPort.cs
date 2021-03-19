@@ -18,7 +18,7 @@ namespace Notifier.Models
             return new SmptPort(smptPort);
         }
 
-        public static void Guard(int smptPort)
+        private static void Guard(int smptPort)
         {
             var isValidPort = validPorts.Any(port => port == smptPort);
 

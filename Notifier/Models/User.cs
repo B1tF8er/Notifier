@@ -16,7 +16,7 @@ namespace Notifier.Models
             return new User(user);
         }
 
-        public static void Guard(string user)
+        private static void Guard(string user)
         {
             if (string.IsNullOrWhiteSpace(user))
             {
