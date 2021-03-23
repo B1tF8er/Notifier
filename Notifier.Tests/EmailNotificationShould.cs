@@ -35,7 +35,7 @@ namespace Notifier.Tests
         {
             const string ExpectedMessage = "Cannot be null or empty. (Parameter 'message')";
             Func<Task> send = async () => await sut.Object.Send(message).ConfigureAwait(false);
-            
+
             send.Should().Throw<ArgumentNullException>().WithMessage(ExpectedMessage);
         }
 
