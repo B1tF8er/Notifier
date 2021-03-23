@@ -1,5 +1,5 @@
 ﻿using Notifier.Contracts;
-using System;
+using Notifier.Helpers;
 using System.Threading.Tasks;
 
 namespace Notifier.Services
@@ -15,10 +15,7 @@ namespace Notifier.Services
 
         public async Task Send(string message)
         {
-            if (string.IsNullOrWhiteSpace(message))
-            {
-                throw new ArgumentNullException(nameof(message), "Message cannot be empty.");
-            }
+            message.Guard(nameof(message));
 
             await messageWriter
                 .Write($"{message} via SQL with: {sqlConfiguration}")

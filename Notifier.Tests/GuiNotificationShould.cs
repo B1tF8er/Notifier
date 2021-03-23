@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using FluentAssertions;
+using Moq;
 using Notifier.Contracts;
 using Notifier.Services;
 using System;
@@ -24,11 +25,12 @@ namespace Notifier.Tests
         [InlineData("")]
         [InlineData(default(string))]
         [InlineData("     ")]
-        public async void Throw_ArgumentNullException_When_Message_Is_Invalid(string message)
+        public void Throw_ArgumentNullException_When_Message_Is_Invalid(string message)
         {
-            await Assert.ThrowsAsync<ArgumentNullException>(() =>
-                sut.Object.Send(message)
-            );
+            const string ExpectedMessage = "Cannot be null or empty. (Parameter 'message')";
+            Func<Task> send = async () => await sut.Object.Send(message).ConfigureAwait(false);
+
+            send.Should().Throw<ArgumentNullException>().WithMessage(ExpectedMessage);
         }
 
         [Fact]
