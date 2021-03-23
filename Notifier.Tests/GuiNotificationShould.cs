@@ -22,15 +22,12 @@ namespace Notifier.Tests
         }
 
         [Theory]
-        [InlineData("")]
-        [InlineData(default(string))]
-        [InlineData("     ")]
-        public void Throw_ArgumentNullException_When_Message_Is_Invalid(string message)
+        [MemberData(nameof(NotificationData.Messages), MemberType = typeof(NotificationData))]
+        public void Throw_ArgumentNullException_When_Message_Is_Invalid(string message, string expected)
         {
-            const string ExpectedMessage = "Cannot be null or empty. (Parameter 'message')";
             Func<Task> send = async () => await sut.Object.Send(message).ConfigureAwait(false);
 
-            send.Should().Throw<ArgumentNullException>().WithMessage(ExpectedMessage);
+            send.Should().Throw<ArgumentNullException>().WithMessage(expected);
         }
 
         [Fact]
