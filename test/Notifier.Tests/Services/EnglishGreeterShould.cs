@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Notifier.Tests
+namespace Notifier.Tests.Services
 {
     public class EnglishGreeterShould
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Notifier.Tests
+namespace Notifier.Tests.Services
 {
     public static class NotificationData
     {

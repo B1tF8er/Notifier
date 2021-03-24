@@ -3,7 +3,7 @@ using Notifier.Models;
 using System;
 using Xunit;
 
-namespace Notifier.Tests
+namespace Notifier.Tests.Models
 {
     public class CellPhoneNumberShould
     {

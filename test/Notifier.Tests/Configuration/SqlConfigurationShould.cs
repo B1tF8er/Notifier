@@ -4,7 +4,7 @@ using Notifier.Configuration;
 using Notifier.Models;
 using Xunit;
 
-namespace Notifier.Tests
+namespace Notifier.Tests.Configuration
 {
     public class SqlConfigurationShould
     {
