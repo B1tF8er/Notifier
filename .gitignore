@@ -341,3 +341,6 @@ healthchecksdb
 
 # Ionide VS Code plugin
 .ionide
+
+# Visual Studio Code Settings
+.vscode
