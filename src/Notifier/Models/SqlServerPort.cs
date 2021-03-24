@@ -28,10 +28,25 @@ namespace Notifier.Models
             }
         }
 
-        public static implicit operator int(SqlServerPort sqlServerPort) => sqlServerPort.value;
+        public static implicit operator int(SqlServerPort sqlServerPort) =>
+            sqlServerPort.value;
 
-        public static implicit operator SqlServerPort(int sqlServerPort) => Create(sqlServerPort);
+        public static implicit operator SqlServerPort(int sqlServerPort) =>
+            Create(sqlServerPort);
 
-        public override string ToString() => $"{value}";
+        public static bool operator ==(SqlServerPort lhs, SqlServerPort rhs) =>
+            lhs is null ? rhs is null : lhs.Equals(rhs);
+
+        public static bool operator !=(SqlServerPort lhs, SqlServerPort rhs) =>
+            !(lhs == rhs);
+
+        public override string ToString() =>
+            $"{value}";
+
+        public override bool Equals(object obj) =>
+            obj is SqlServerPort other && value == other.value;
+
+        public override int GetHashCode() =>
+            value.GetHashCode();
     }
 }

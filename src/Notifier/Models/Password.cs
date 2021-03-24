@@ -29,10 +29,25 @@ namespace Notifier.Models
             }
         }
 
-        public static implicit operator string(Password password) => password.value;
+        public static implicit operator string(Password password) =>
+            password.value;
 
-        public static implicit operator Password(string password) => Create(password);
+        public static implicit operator Password(string password) =>
+            Create(password);
 
-        public override string ToString() => value;
+        public static bool operator ==(Password lhs, Password rhs) =>
+            lhs is null ? rhs is null : lhs.Equals(rhs);
+
+        public static bool operator !=(Password lhs, Password rhs) =>
+            !(lhs == rhs);
+
+        public override string ToString() =>
+            value;
+
+        public override bool Equals(object obj) =>
+            obj is Password other && value == other.value;
+
+        public override int GetHashCode() =>
+            value.GetHashCode();
     }
 }

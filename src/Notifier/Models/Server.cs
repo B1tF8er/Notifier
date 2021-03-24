@@ -22,10 +22,25 @@ namespace Notifier.Models
             }
         }
 
-        public static implicit operator string(Server server) => server.value;
+        public static implicit operator string(Server server) =>
+            server.value;
 
-        public static implicit operator Server(string server) => Create(server);
+        public static implicit operator Server(string server) =>
+            Create(server);
 
-        public override string ToString() => value;
+        public static bool operator ==(Server lhs, Server rhs) =>
+            lhs is null ? rhs is null : lhs.Equals(rhs);
+
+        public static bool operator !=(Server lhs, Server rhs) =>
+            !(lhs == rhs);
+
+        public override string ToString() =>
+            value;
+
+        public override bool Equals(object obj) =>
+            obj is Server other && value == other.value;
+
+        public override int GetHashCode() =>
+            value.GetHashCode();
     }
 }

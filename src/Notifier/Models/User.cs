@@ -29,10 +29,25 @@ namespace Notifier.Models
             }
         }
 
-        public static implicit operator string(User user) => user.value;
+        public static implicit operator string(User user) =>
+            user.value;
 
-        public static implicit operator User(string user) => Create(user);
+        public static implicit operator User(string user) =>
+            Create(user);
 
-        public override string ToString() => value;
+        public static bool operator ==(User lhs, User rhs) =>
+            lhs is null ? rhs is null : lhs.Equals(rhs);
+
+        public static bool operator !=(User lhs, User rhs) =>
+            !(lhs == rhs);
+
+        public override string ToString() =>
+            value;
+
+        public override bool Equals(object obj) =>
+            obj is User other && value == other.value;
+
+        public override int GetHashCode() =>
+            value.GetHashCode();
     }
 }
