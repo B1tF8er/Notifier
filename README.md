@@ -27,5 +27,5 @@ to help us to write code that is easier to mantain, extend and test.
 ```powershell
     dotnet restore ./test/Notifier.Tests
     dotnet build ./test/Notifier.Tests -c Release
-    dotnet test ./test/Notifier.Tests -c Release --no-build  --collect:"XPlat Code Coverage"
+    dotnet test ./test/Notifier.Tests -c Release --no-build --collect:"XPlat Code Coverage"
 ```
