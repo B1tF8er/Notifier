@@ -9,3 +9,23 @@ to help us to write code that is easier to mantain, extend and test.
 
 * .NET 5 SDK installed
 * The IDE or Text Editor of your choice
+
+## How To Run And Test ##
+
+> Using the `dotnet` CLI
+
+### Build And Run ###
+
+```powershell
+    dotnet restore ./src/Notifier
+    dotnet build ./src/Notifier -c Release
+    dotnet run -p ./src/Notifier -c Release --no-build
+```
+
+### Build And Test ###
+
+```powershell
+    dotnet restore ./test/Notifier.Tests
+    dotnet build ./test/Notifier.Tests -c Release
+    dotnet test ./test/Notifier.Tests -c Release --no-build
+```
