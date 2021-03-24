@@ -7,5 +7,5 @@
 ```powershell
     dotnet restore ./Notifier.Tests
     dotnet build ./Notifier.Tests -c Release
-    dotnet test ./Notifier.Tests -c Release --no-build
+    dotnet test ./Notifier.Tests -c Release --no-build --collect:"XPlat Code Coverage"
 ```
