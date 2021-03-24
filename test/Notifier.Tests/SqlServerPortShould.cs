@@ -1,4 +1,6 @@
-﻿using Notifier.Models;
+﻿using FluentAssertions;
+using Notifier.Models;
+using System;
 using Xunit;
 
 namespace Notifier.Tests
@@ -75,6 +77,19 @@ namespace Notifier.Tests
             SqlServerPort right = 443;
 
             Assert.True(left.GetHashCode() == right.GetHashCode());
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        public void Throw_ArgumentOutOfRangeException_When_SqlServerPort_Is_Invalid(int sqlServerPort)
+        {
+            Func<SqlServerPort> create = () => SqlServerPort.Create(sqlServerPort);
+
+            create.Should().Throw<ArgumentOutOfRangeException>();
         }
     }
 }

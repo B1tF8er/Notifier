@@ -1,4 +1,6 @@
-﻿using Notifier.Models;
+﻿using FluentAssertions;
+using Notifier.Models;
+using System;
 using Xunit;
 
 namespace Notifier.Tests
@@ -75,6 +77,19 @@ namespace Notifier.Tests
             SmptPort right = 2525;
 
             Assert.True(left.GetHashCode() == right.GetHashCode());
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        public void Throw_ArgumentOutOfRangeException_When_SmptPort_Is_Invalid(int smptPort)
+        {
+            Func<SmptPort> create = () => SmptPort.Create(smptPort);
+
+            create.Should().Throw<ArgumentOutOfRangeException>();
         }
     }
 }

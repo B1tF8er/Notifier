@@ -18,7 +18,7 @@ namespace Notifier.Models
 
         private static void Guard(string emailAddress)
         {
-            if (emailAddress is null)
+            if (string.IsNullOrWhiteSpace(emailAddress))
             {
                 throw new ArgumentNullException(nameof(emailAddress), "Email address cannot be null");
             }

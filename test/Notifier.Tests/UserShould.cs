@@ -1,4 +1,6 @@
-﻿using Notifier.Models;
+﻿using FluentAssertions;
+using Notifier.Models;
+using System;
 using Xunit;
 
 namespace Notifier.Tests
@@ -75,6 +77,29 @@ namespace Notifier.Tests
             User right = "someone";
 
             Assert.True(left.GetHashCode() == right.GetHashCode());
+        }
+
+        [Theory]
+        [InlineData(default(string))]
+        [InlineData("")]
+        [InlineData("     ")]
+        public void Throw_ArgumentNullException_When_User_Is_Invalid(string user)
+        {
+            Func<User> create = () => User.Create(user);
+
+            create.Should().Throw<ArgumentNullException>();
+        }
+
+        [Theory]
+        [InlineData("a")]
+        [InlineData("ab")]
+        [InlineData("abc")]
+        [InlineData("abcd")]
+        public void Throw_InvalidOperationException_When_User_Is_Not_Five_Digits_Long(string user)
+        {
+            Func<User> create = () => User.Create(user);
+
+            create.Should().Throw<InvalidOperationException>();
         }
     }
 }

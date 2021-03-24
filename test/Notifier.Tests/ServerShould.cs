@@ -1,4 +1,6 @@
-﻿using Notifier.Models;
+﻿using FluentAssertions;
+using Notifier.Models;
+using System;
 using Xunit;
 
 namespace Notifier.Tests
@@ -75,6 +77,17 @@ namespace Notifier.Tests
             Server right = "localhost";
 
             Assert.True(left.GetHashCode() == right.GetHashCode());
+        }
+
+        [Theory]
+        [InlineData(default(string))]
+        [InlineData("")]
+        [InlineData("     ")]
+        public void Throw_ArgumentNullException_When_Server_Is_Invalid(string server)
+        {
+            Func<Server> create = () => Server.Create(server);
+
+            create.Should().Throw<ArgumentNullException>();
         }
     }
 }

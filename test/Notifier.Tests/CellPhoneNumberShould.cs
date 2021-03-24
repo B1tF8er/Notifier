@@ -1,4 +1,6 @@
-﻿using Notifier.Models;
+﻿using FluentAssertions;
+using Notifier.Models;
+using System;
 using Xunit;
 
 namespace Notifier.Tests
@@ -84,6 +86,45 @@ namespace Notifier.Tests
             CellPhoneNumber right = "1234567890";
 
             Assert.True(left.GetHashCode() == right.GetHashCode());
+        }
+
+        [Theory]
+        [InlineData(default(string))]
+        [InlineData("")]
+        [InlineData("     ")]
+        public void Throw_ArgumentNullException_When_CellPhoneNumber_Is_Invalid(string cellPhoneNumber)
+        {
+            Func<CellPhoneNumber> create = () => CellPhoneNumber.Create(cellPhoneNumber);
+
+            create.Should().Throw<ArgumentNullException>();
+        }
+
+        [Theory]
+        [InlineData("1")]
+        [InlineData("12")]
+        [InlineData("123")]
+        [InlineData("1234")]
+        [InlineData("12345")]
+        [InlineData("123456")]
+        [InlineData("1234567")]
+        [InlineData("12345678")]
+        [InlineData("123456789")]
+        public void Throw_InvalidOperationException_When_CellPhoneNumber_Is_Not_Ten_Digits_Long(string cellPhoneNumber)
+        {
+            Func<CellPhoneNumber> create = () => CellPhoneNumber.Create(cellPhoneNumber);
+
+            create.Should().Throw<InvalidOperationException>();
+        }
+
+        [Theory]
+        [InlineData("1234567890a")]
+        [InlineData("a1234567890")]
+        [InlineData("abcdefghij")]
+        public void Throw_ArgumentException_When_CellPhoneNumber_Has_Invalid_Format(string cellPhoneNumber)
+        {
+            Func<CellPhoneNumber> create = () => CellPhoneNumber.Create(cellPhoneNumber);
+
+            create.Should().Throw<ArgumentException>();
         }
     }
 }

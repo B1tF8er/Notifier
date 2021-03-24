@@ -6,7 +6,7 @@ namespace Notifier.Models
 {
     public sealed class CellPhoneNumber
     {
-        private const int CellPhoneNumberMinLenght = 10;
+        private const int MinLength = 10;
 
         private readonly string value;
 
@@ -27,9 +27,9 @@ namespace Notifier.Models
                 throw new ArgumentNullException(nameof(cellPhoneNumber), "Cell phone number cannot be null");
             }
 
-            if (cellPhoneNumber.Length < CellPhoneNumberMinLenght)
+            if (cellPhoneNumber.Length < MinLength)
             {
-                throw new ArgumentException("Invalid cell phone number length", nameof(cellPhoneNumber));
+                throw new InvalidOperationException($"Cell phone number should be at least {MinLength} digits long");
             }
 
             var match = Regex.Match(

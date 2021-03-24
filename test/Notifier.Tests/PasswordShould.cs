@@ -1,4 +1,6 @@
-﻿using Notifier.Models;
+﻿using FluentAssertions;
+using Notifier.Models;
+using System;
 using Xunit;
 
 namespace Notifier.Tests
@@ -75,6 +77,34 @@ namespace Notifier.Tests
             Password right = "5up3r53cur3";
 
             Assert.True(left.GetHashCode() == right.GetHashCode());
+        }
+
+        [Theory]
+        [InlineData(default(string))]
+        [InlineData("")]
+        [InlineData("     ")]
+        public void Throw_ArgumentNullException_When_Password_Is_Invalid(string password)
+        {
+            Func<Password> create = () => Password.Create(password);
+
+            create.Should().Throw<ArgumentNullException>();
+        }
+
+        [Theory]
+        [InlineData("a")]
+        [InlineData("ab")]
+        [InlineData("abc")]
+        [InlineData("abcd")]
+        [InlineData("abcde")]
+        [InlineData("abcdef")]
+        [InlineData("abcdefg")]
+        [InlineData("abcdefgh")]
+        [InlineData("abcdefghi")]
+        public void Throw_InvalidOperationException_When_Password_Is_Not_Ten_Digits_Long(string password)
+        {
+            Func<Password> create = () => Password.Create(password);
+
+            create.Should().Throw<InvalidOperationException>();
         }
     }
 }

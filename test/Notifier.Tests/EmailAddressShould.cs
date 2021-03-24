@@ -1,4 +1,6 @@
-﻿using Notifier.Models;
+﻿using FluentAssertions;
+using Notifier.Models;
+using System;
 using Xunit;
 
 namespace Notifier.Tests
@@ -75,6 +77,28 @@ namespace Notifier.Tests
             EmailAddress right = "some@domain.com";
 
             Assert.True(left.GetHashCode() == right.GetHashCode());
+        }
+
+        [Theory]
+        [InlineData(default(string))]
+        [InlineData("")]
+        [InlineData("     ")]
+        public void Throw_ArgumentNullException_When_EmailAddress_Is_Invalid(string emailAddress)
+        {
+            Func<EmailAddress> create = () => EmailAddress.Create(emailAddress);
+
+            create.Should().Throw<ArgumentNullException>();
+        }
+
+        [Theory]
+        [InlineData("s@b")]
+        [InlineData("sb.com")]
+        [InlineData("@dom.com")]
+        public void Throw_ArgumentException_When_EmailAddress_Has_Invalid_Format(string emailAddress)
+        {
+            Func<EmailAddress> create = () => EmailAddress.Create(emailAddress);
+
+            create.Should().Throw<ArgumentException>();
         }
     }
 }
