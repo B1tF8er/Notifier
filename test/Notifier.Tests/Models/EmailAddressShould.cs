@@ -94,11 +94,11 @@ namespace Notifier.Tests.Models
         [InlineData("s@b")]
         [InlineData("sb.com")]
         [InlineData("@dom.com")]
-        public void Throw_ArgumentException_When_EmailAddress_Has_Invalid_Format(string emailAddress)
+        public void Throw_FormatException_When_EmailAddress_Has_Invalid_Format(string emailAddress)
         {
             Func<EmailAddress> create = () => EmailAddress.Create(emailAddress);
 
-            create.Should().Throw<ArgumentException>();
+            create.Should().Throw<FormatException>();
         }
     }
 }

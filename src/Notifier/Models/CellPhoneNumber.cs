@@ -40,7 +40,7 @@ namespace Notifier.Models
 
             if (!match.Success)
             {
-                throw new ArgumentException("Invalid cell phone number format", nameof(cellPhoneNumber));
+                throw new FormatException("Invalid cell phone number format");
             }
         }
 

@@ -31,7 +31,7 @@ namespace Notifier.Models
 
             if (!match.Success)
             {
-                throw new ArgumentException("Invalid email address format", nameof(emailAddress));
+                throw new FormatException("Invalid email address format");
             }
         }
 

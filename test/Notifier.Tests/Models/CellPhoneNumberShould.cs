@@ -120,11 +120,11 @@ namespace Notifier.Tests.Models
         [InlineData("1234567890a")]
         [InlineData("a1234567890")]
         [InlineData("abcdefghij")]
-        public void Throw_ArgumentException_When_CellPhoneNumber_Has_Invalid_Format(string cellPhoneNumber)
+        public void Throw_FormatException_When_CellPhoneNumber_Has_Invalid_Format(string cellPhoneNumber)
         {
             Func<CellPhoneNumber> create = () => CellPhoneNumber.Create(cellPhoneNumber);
 
-            create.Should().Throw<ArgumentException>();
+            create.Should().Throw<FormatException>();
         }
     }
 }
