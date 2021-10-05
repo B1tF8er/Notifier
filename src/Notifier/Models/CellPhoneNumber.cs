@@ -1,5 +1,5 @@
 ﻿using System;
-using static Notifier.Validators.CellphoneNumberValidator;
+using static Notifier.Validators.CellPhoneNumberValidator;
 
 namespace Notifier.Models
 {
