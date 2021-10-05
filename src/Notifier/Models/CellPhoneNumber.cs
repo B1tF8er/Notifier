@@ -5,10 +5,10 @@ namespace Notifier.Models
 {
     public sealed class CellPhoneNumber
     {
-        private readonly string value;
+        private readonly string _value;
 
         private CellPhoneNumber(string cellPhoneNumber) =>
-            value = cellPhoneNumber;
+            _value = cellPhoneNumber;
 
         public static CellPhoneNumber Create(string cellPhoneNumber) =>
             new(cellPhoneNumber.Validate());
@@ -17,10 +17,10 @@ namespace Notifier.Models
             Create($"{cellPhoneNumber}");
 
         public static implicit operator string(CellPhoneNumber cellPhoneNumber) =>
-            cellPhoneNumber.value;
+            cellPhoneNumber._value;
 
         public static implicit operator int(CellPhoneNumber cellPhoneNumber) =>
-            Convert.ToInt32(cellPhoneNumber.value);
+            Convert.ToInt32(cellPhoneNumber._value);
 
         public static implicit operator CellPhoneNumber(string cellPhoneNumber) =>
             Create(cellPhoneNumber);
@@ -29,18 +29,18 @@ namespace Notifier.Models
             Create($"{cellPhoneNumber}");
 
         public static bool operator ==(CellPhoneNumber lhs, CellPhoneNumber rhs) =>
-            lhs is null ? rhs is null : lhs.Equals(rhs);
+            lhs?.Equals(rhs) ?? rhs is null;
 
         public static bool operator !=(CellPhoneNumber lhs, CellPhoneNumber rhs) =>
             !(lhs == rhs);
 
         public override string ToString() =>
-            value;
+            _value;
 
         public override bool Equals(object obj) =>
-            obj is CellPhoneNumber other && value == other.value;
+            obj is CellPhoneNumber other && _value == other._value;
 
         public override int GetHashCode() =>
-            value.GetHashCode();
+            _value.GetHashCode();
     }
 }

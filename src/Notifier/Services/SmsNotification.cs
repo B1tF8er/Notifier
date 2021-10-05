@@ -6,19 +6,19 @@ namespace Notifier.Services
 {
     public class SmsNotification : INotification
     {
-        private readonly ISmsConfiguration smsConfiguration;
+        private readonly ISmsConfiguration _smsConfiguration;
 
-        private readonly IMessageWriter messageWriter;
+        private readonly IMessageWriter _messageWriter;
 
         public SmsNotification(ISmsConfiguration smsConfiguration, IMessageWriter messageWriter) =>
-            (this.smsConfiguration, this.messageWriter) = (smsConfiguration, messageWriter);
+            (this._smsConfiguration, this._messageWriter) = (smsConfiguration, messageWriter);
 
         public async Task Send(string message)
         {
             message.Guard(nameof(message));
 
-            await messageWriter
-                .Write($"{message} via SMS with: {smsConfiguration}")
+            await _messageWriter
+                .Write($"{message} via SMS with: {_smsConfiguration}")
                 .ConfigureAwait(false);
         }
     }

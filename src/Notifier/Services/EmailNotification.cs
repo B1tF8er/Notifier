@@ -6,19 +6,19 @@ namespace Notifier.Services
 {
     public class EmailNotification : INotification
     {
-        private readonly IEmailConfiguration emailConfiguration;
+        private readonly IEmailConfiguration _emailConfiguration;
 
-        private readonly IMessageWriter messageWriter;
+        private readonly IMessageWriter _messageWriter;
 
         public EmailNotification(IEmailConfiguration emailConfiguration, IMessageWriter messageWriter) =>
-            (this.emailConfiguration, this.messageWriter) = (emailConfiguration, messageWriter);
+            (this._emailConfiguration, this._messageWriter) = (emailConfiguration, messageWriter);
 
         public async Task Send(string message)
         {
             message.Guard(nameof(message));
 
-            await messageWriter
-                .Write($"{message} via Email with: {emailConfiguration}")
+            await _messageWriter
+                .Write($"{message} via Email with: {_emailConfiguration}")
                 .ConfigureAwait(false);
         }
     }

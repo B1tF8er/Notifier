@@ -10,7 +10,7 @@ namespace Notifier.Tests.Models
         [Fact]
         public void Implicit_Convert_SmptPort_From_Int()
         {
-            SmptPort left = 2525;
+            SmtpPort left = 2525;
             int right = left;
 
             Assert.True(left == right);
@@ -19,8 +19,8 @@ namespace Notifier.Tests.Models
         [Fact]
         public void Return_True_When_SmptPorts_Are_Equal()
         {
-            SmptPort left = 2525;
-            SmptPort right = 2525;
+            SmtpPort left = 2525;
+            SmtpPort right = 2525;
 
             Assert.True(left == right);
         }
@@ -28,8 +28,8 @@ namespace Notifier.Tests.Models
         [Fact]
         public void Return_False_When_SmptPorts_Are_Not_Equal()
         {
-            SmptPort left = 2525;
-            SmptPort right = 587;
+            SmtpPort left = 2525;
+            SmtpPort right = 587;
 
             Assert.False(left == right);
         }
@@ -37,8 +37,8 @@ namespace Notifier.Tests.Models
         [Fact]
         public void Return_False_When_SmptPorts_Are_Equal()
         {
-            SmptPort left = 2525;
-            SmptPort right = 2525;
+            SmtpPort left = 2525;
+            SmtpPort right = 2525;
 
             Assert.False(left != right);
         }
@@ -46,8 +46,8 @@ namespace Notifier.Tests.Models
         [Fact]
         public void Return_True_When_SmptPorts_Are_Not_Equal()
         {
-            SmptPort left = 2525;
-            SmptPort right = 587;
+            SmtpPort left = 2525;
+            SmtpPort right = 587;
 
             Assert.True(left != right);
         }
@@ -55,8 +55,8 @@ namespace Notifier.Tests.Models
         [Fact]
         public void Return_True_When_Both_SmptPorts_Are_Equal()
         {
-            SmptPort left = 2525;
-            SmptPort right = 2525;
+            SmtpPort left = 2525;
+            SmtpPort right = 2525;
 
             Assert.True(left.Equals(right));
         }
@@ -64,8 +64,8 @@ namespace Notifier.Tests.Models
         [Fact]
         public void Return_SmptPort_As_String()
         {
-            SmptPort left = 2525;
-            SmptPort right = 2525;
+            SmtpPort left = 2525;
+            SmtpPort right = 2525;
 
             Assert.True(left.ToString() == right.ToString());
         }
@@ -73,8 +73,8 @@ namespace Notifier.Tests.Models
         [Fact]
         public void Return_SmptPort_As_HashCode()
         {
-            SmptPort left = 2525;
-            SmptPort right = 2525;
+            SmtpPort left = 2525;
+            SmtpPort right = 2525;
 
             Assert.True(left.GetHashCode() == right.GetHashCode());
         }
@@ -87,7 +87,7 @@ namespace Notifier.Tests.Models
         [InlineData(5)]
         public void Throw_ArgumentOutOfRangeException_When_SmptPort_Is_Invalid(int smptPort)
         {
-            Func<SmptPort> create = () => SmptPort.Create(smptPort);
+            Func<SmtpPort> create = () => SmtpPort.Create(smptPort);
 
             create.Should().Throw<ArgumentOutOfRangeException>();
         }

@@ -6,19 +6,19 @@ namespace Notifier.Services
 {
     public class SqlNotification : INotification
     {
-        private readonly ISqlConfiguration sqlConfiguration;
+        private readonly ISqlConfiguration _sqlConfiguration;
 
-        private readonly IMessageWriter messageWriter;
+        private readonly IMessageWriter _messageWriter;
 
         public SqlNotification(ISqlConfiguration sqlConfiguration, IMessageWriter messageWriter) =>
-            (this.sqlConfiguration, this.messageWriter) = (sqlConfiguration, messageWriter);
+            (this._sqlConfiguration, this._messageWriter) = (sqlConfiguration, messageWriter);
 
         public async Task Send(string message)
         {
             message.Guard(nameof(message));
 
-            await messageWriter
-                .Write($"{message} via SQL with: {sqlConfiguration}")
+            await _messageWriter
+                .Write($"{message} via SQL with: {_sqlConfiguration}")
                 .ConfigureAwait(false);
         }
     }

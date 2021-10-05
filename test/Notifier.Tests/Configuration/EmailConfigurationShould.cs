@@ -18,8 +18,8 @@ namespace Notifier.Tests.Configuration
         [Fact]
         public void Get_Port_As_SmptPort()
         {
-            SmptPort actual = sut.Object.Port;
-            SmptPort expected = 2525;
+            SmtpPort actual = sut.Object.Port;
+            SmtpPort expected = 2525;
 
             actual.Should().Be(expected);
         }

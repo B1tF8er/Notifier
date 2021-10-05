@@ -5,7 +5,7 @@ namespace Notifier.Configuration
 {
     public class EmailConfiguration : IEmailConfiguration
     {
-        public SmptPort Port { get; }
+        public SmtpPort Port { get; }
 
         public EmailAddress FromAddress { get; }
 
@@ -17,7 +17,7 @@ namespace Notifier.Configuration
 
         public EmailConfiguration()
         {
-            Port = SmptPort.Create(2525);
+            Port = SmtpPort.Create(2525);
             FromAddress = EmailAddress.Create("some@domain.com");
             ToAddress = EmailAddress.Create("other@domain.com");
             User = User.Create("someone");

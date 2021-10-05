@@ -6,16 +6,16 @@ namespace Notifier.Services
 {
     public class GuiNotification : INotification
     {
-        private readonly IMessageWriter messageWriter;
+        private readonly IMessageWriter _messageWriter;
 
         public GuiNotification(IMessageWriter messageWriter) =>
-            this.messageWriter = messageWriter;
+            this._messageWriter = messageWriter;
 
         public async Task Send(string message)
         {
             message.Guard(nameof(message));
 
-            await messageWriter
+            await _messageWriter
                 .Write($"{message} via GUI")
                 .ConfigureAwait(false);
         }

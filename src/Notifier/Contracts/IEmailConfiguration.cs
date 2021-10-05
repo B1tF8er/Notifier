@@ -4,7 +4,7 @@ namespace Notifier.Contracts
 {
     public interface IEmailConfiguration
     {
-        SmptPort Port { get; }
+        SmtpPort Port { get; }
 
         EmailAddress FromAddress { get; }
 

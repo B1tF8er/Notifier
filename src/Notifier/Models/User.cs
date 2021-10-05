@@ -4,33 +4,33 @@ namespace Notifier.Models
 {
     public sealed class User
     {
-        private readonly string value;
+        private readonly string _value;
 
         private User(string user) =>
-            value = user;
+            _value = user;
 
         public static User Create(string user) =>
             new(user.Validate());
 
         public static implicit operator string(User user) =>
-            user.value;
+            user._value;
 
         public static implicit operator User(string user) =>
             Create(user);
 
         public static bool operator ==(User lhs, User rhs) =>
-            lhs is null ? rhs is null : lhs.Equals(rhs);
+            lhs?.Equals(rhs) ?? rhs is null;
 
         public static bool operator !=(User lhs, User rhs) =>
             !(lhs == rhs);
 
         public override string ToString() =>
-            value;
+            _value;
 
         public override bool Equals(object obj) =>
-            obj is User other && value == other.value;
+            obj is User other && _value == other._value;
 
         public override int GetHashCode() =>
-            value.GetHashCode();
+            _value.GetHashCode();
     }
 }

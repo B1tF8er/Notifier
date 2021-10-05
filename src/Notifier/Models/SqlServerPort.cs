@@ -4,33 +4,33 @@ namespace Notifier.Models
 {
     public sealed class SqlServerPort
     {
-        private readonly int value;
+        private readonly int _value;
 
         private SqlServerPort(int sqlServerPort) =>
-            value = sqlServerPort;
+            _value = sqlServerPort;
 
         public static SqlServerPort Create(int sqlServerPort) =>
             new(sqlServerPort.Validate());
 
         public static implicit operator int(SqlServerPort sqlServerPort) =>
-            sqlServerPort.value;
+            sqlServerPort._value;
 
         public static implicit operator SqlServerPort(int sqlServerPort) =>
             Create(sqlServerPort);
 
         public static bool operator ==(SqlServerPort lhs, SqlServerPort rhs) =>
-            lhs is null ? rhs is null : lhs.Equals(rhs);
+            lhs?.Equals(rhs) ?? rhs is null;
 
         public static bool operator !=(SqlServerPort lhs, SqlServerPort rhs) =>
             !(lhs == rhs);
 
         public override string ToString() =>
-            $"{value}";
+            $"{_value}";
 
         public override bool Equals(object obj) =>
-            obj is SqlServerPort other && value == other.value;
+            obj is SqlServerPort other && _value == other._value;
 
         public override int GetHashCode() =>
-            value.GetHashCode();
+            _value.GetHashCode();
     }
 }
