@@ -1,0 +1,17 @@
+﻿using System;
+
+namespace Notifier.Validators
+{
+    internal static class ServerValidator
+    {
+        internal static string Validate(this string server)
+        {
+            if (string.IsNullOrWhiteSpace(server))
+            {
+                throw new ArgumentNullException(nameof(server), "Server cannot be null or empty");
+            }
+
+            return server;
+        }
+    }
+}

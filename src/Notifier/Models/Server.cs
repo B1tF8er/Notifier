@@ -1,4 +1,4 @@
-﻿using System;
+﻿using static Notifier.Validators.ServerValidator;
 
 namespace Notifier.Models
 {
@@ -8,19 +8,8 @@ namespace Notifier.Models
 
         private Server(string server) => value = server;
 
-        public static Server Create(string server)
-        {
-            Guard(server);
-            return new Server(server);
-        }
-
-        private static void Guard(string server)
-        {
-            if (string.IsNullOrWhiteSpace(server))
-            {
-                throw new ArgumentNullException(nameof(server), "Server cannot be null or empty");
-            }
-        }
+        public static Server Create(string server) =>
+            new(server.Validate());
 
         public static implicit operator string(Server server) =>
             server.value;
