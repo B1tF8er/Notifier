@@ -12,11 +12,9 @@ to help us to write code that is easier to mantain, extend and test.
 
 ## How To Run And Test ##
 
-> Using the `dotnet` CLI
-
 ### Build And Run ###
 
-#### using `dotnet` cli ####
+> Using the `dotnet` CLI
 
 ```powershell
     dotnet restore ./src/Notifier
@@ -24,7 +22,7 @@ to help us to write code that is easier to mantain, extend and test.
     dotnet run -p ./src/Notifier -c Release --no-build
 ```
 
-#### using `docker` cli ####
+> Using the `docker` CLI
 
 ```powershell
     docker build -t notifier ./src/Notifier
@@ -33,7 +31,7 @@ to help us to write code that is easier to mantain, extend and test.
 
 ### Build And Test ###
 
-#### using `dotnet` cli ####
+> Using the `dotnet` CLI
 
 ```powershell
     dotnet restore ./test/Notifier.Tests
