@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using static Notifier.Helpers.Constants.Patterns;
+using static Notifier.Helpers.Constants.ErrorMessages.EmailAddress;
 
 namespace Notifier.Validators
 {
@@ -10,7 +11,7 @@ namespace Notifier.Validators
         {
             if (string.IsNullOrWhiteSpace(emailAddress))
             {
-                throw new ArgumentNullException(nameof(emailAddress), "Email address cannot be null");
+                throw new ArgumentNullException(nameof(emailAddress), CannotBeNullOrEmpty);
             }
 
             var match = Regex.Match(
@@ -21,7 +22,7 @@ namespace Notifier.Validators
 
             if (!match.Success)
             {
-                throw new FormatException("Invalid email address format");
+                throw new FormatException(InvalidFormat);
             }
 
             return emailAddress;

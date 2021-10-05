@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using static Notifier.Helpers.Constants.ErrorMessages.SmtpPort;
 
 namespace Notifier.Validators
 {
@@ -14,7 +15,7 @@ namespace Notifier.Validators
 
             if (!isValidPort)
             {
-                throw new ArgumentOutOfRangeException(nameof(smptPort), "SMPT port is not valid");
+                throw new ArgumentOutOfRangeException(nameof(smptPort), InvalidPort);
             }
 
             return smptPort;

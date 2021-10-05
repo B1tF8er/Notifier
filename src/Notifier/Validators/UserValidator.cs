@@ -1,4 +1,5 @@
 ﻿using System;
+using static Notifier.Helpers.Constants.ErrorMessages.User;
 
 namespace Notifier.Validators
 {
@@ -10,12 +11,12 @@ namespace Notifier.Validators
         {
             if (string.IsNullOrWhiteSpace(user))
             {
-                throw new ArgumentNullException(nameof(user), "User cannot be null or empty");
+                throw new ArgumentNullException(nameof(user), CannotBeNullOrEmpty);
             }
 
             if (user.Length < MinLength)
             {
-                throw new InvalidOperationException($"User should be at least {MinLength} digits long");
+                throw new InvalidOperationException(string.Format(ShouldBeAtLeastNDigitsLong, MinLength));
             }
 
             return user;

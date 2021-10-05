@@ -1,4 +1,5 @@
 ﻿using System;
+using static Notifier.Helpers.Constants.ErrorMessages.Password;
 
 namespace Notifier.Validators
 {
@@ -10,12 +11,12 @@ namespace Notifier.Validators
         {
             if (string.IsNullOrWhiteSpace(password))
             {
-                throw new ArgumentNullException(nameof(password), "Password cannot be null or empty");
+                throw new ArgumentNullException(nameof(password), CannotBeNullOrEmpty);
             }
 
             if (password.Length < MinLength)
             {
-                throw new InvalidOperationException($"Password should be at least {MinLength} digits long");
+                throw new InvalidOperationException(string.Format(ShouldBeAtLeastNDigitsLong, MinLength));
             }
 
             return password;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using static Notifier.Helpers.Constants.Patterns;
+using static Notifier.Helpers.Constants.ErrorMessages.CellPhone;
 
 namespace Notifier.Validators
 {
@@ -12,12 +13,12 @@ namespace Notifier.Validators
         {
             if (string.IsNullOrWhiteSpace(cellPhoneNumber))
             {
-                throw new ArgumentNullException(nameof(cellPhoneNumber), "Cell phone number cannot be null");
+                throw new ArgumentNullException(nameof(cellPhoneNumber), CannotBeNullOrEmpty);
             }
 
             if (cellPhoneNumber.Length < MinLength)
             {
-                throw new InvalidOperationException($"Cell phone number should be at least {MinLength} digits long");
+                throw new InvalidOperationException(string.Format(ShouldBeAtLeastNDigitsLong, MinLength));
             }
 
             var match = Regex.Match(
@@ -28,7 +29,7 @@ namespace Notifier.Validators
 
             if (!match.Success)
             {
-                throw new FormatException("Invalid cell phone number format");
+                throw new FormatException(InvalidFormat);
             }
 
             return cellPhoneNumber;
