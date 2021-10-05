@@ -9,27 +9,27 @@ namespace Notifier
 {
     public static class Program
     {
-        private static readonly ConsoleMessageWriter consoleMessageWriter = new ConsoleMessageWriter();
+        private static readonly ConsoleMessageWriter _consoleMessageWriter = new();
 
-        private static readonly IList<INotification> notificationServices = new List<INotification>
+        private static readonly IList<INotification> NotificationServices = new List<INotification>
         {
-            new GuiNotification(consoleMessageWriter),
-            new EmailNotification(new EmailConfiguration(), consoleMessageWriter),
-            new SmsNotification(new SmsConfiguration(), consoleMessageWriter),
-            new SqlNotification(new SqlConfiguration(), consoleMessageWriter)
+            new GuiNotification(_consoleMessageWriter),
+            new EmailNotification(new EmailConfiguration(), _consoleMessageWriter),
+            new SmsNotification(new SmsConfiguration(), _consoleMessageWriter),
+            new SqlNotification(new SqlConfiguration(), _consoleMessageWriter)
         };
 
-        private static readonly IList<IGreeter> greeters = new List<IGreeter>
+        private static readonly IList<IGreeter> Greeters = new List<IGreeter>
         {
-            new SpanishGreeter(notificationServices),
-            new EnglishGreeter(notificationServices)
+            new SpanishGreeter(NotificationServices),
+            new EnglishGreeter(NotificationServices)
         };
 
-        private static readonly string separator = new string('+', 30);
+        private static readonly string _separator = new('+', 30);
 
         public static async Task Main()
         {
-            foreach (var greeter in greeters)
+            foreach (var greeter in Greeters)
             {
                 Header(greeter);
                 await greeter.SayHello().ConfigureAwait(false);
@@ -39,9 +39,9 @@ namespace Notifier
 
         private static void Header(IGreeter greeter)
         {
-            Console.WriteLine(separator);
+            Console.WriteLine(_separator);
             Console.WriteLine($"-- {greeter.GetType()} --");
-            Console.WriteLine(separator);
+            Console.WriteLine(_separator);
         }
 
         private static void Footer()
