@@ -16,13 +16,24 @@ to help us to write code that is easier to mantain, extend and test.
 
 ### Build And Run ###
 
+#### using `dotnet` cli ####
+
 ```powershell
     dotnet restore ./src/Notifier
     dotnet build ./src/Notifier -c Release
     dotnet run -p ./src/Notifier -c Release --no-build
 ```
 
+#### using `docker` cli ####
+
+```powershell
+    docker build -t notifier ./src/Notifier
+    docker run --rm notifier
+```
+
 ### Build And Test ###
+
+#### using `dotnet` cli ####
 
 ```powershell
     dotnet restore ./test/Notifier.Tests
