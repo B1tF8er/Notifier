@@ -1,6 +1,4 @@
-﻿using System;
-using System.Text.RegularExpressions;
-using static Notifier.Helpers.Constants.Patterns;
+﻿using static Notifier.Validators.EmailAddressValidator;
 
 namespace Notifier.Models
 {
@@ -8,32 +6,11 @@ namespace Notifier.Models
     {
         private readonly string value;
 
-        private EmailAddress(string emailAddress) => value = emailAddress;
+        private EmailAddress(string emailAddress) =>
+            value = emailAddress;
 
-        public static EmailAddress Create(string emailAddress)
-        {
-            Guard(emailAddress);
-            return new EmailAddress(emailAddress);
-        }
-
-        private static void Guard(string emailAddress)
-        {
-            if (string.IsNullOrWhiteSpace(emailAddress))
-            {
-                throw new ArgumentNullException(nameof(emailAddress), "Email address cannot be null");
-            }
-
-            var match = Regex.Match(
-                emailAddress,
-                EmailRegex,
-                RegexOptions.Compiled | RegexOptions.IgnoreCase
-            );
-
-            if (!match.Success)
-            {
-                throw new FormatException("Invalid email address format");
-            }
-        }
+        public static EmailAddress Create(string emailAddress) =>
+            new(emailAddress.Validate());
 
         public static implicit operator string(EmailAddress emailAddress) =>
             emailAddress.value;

@@ -1,48 +1,20 @@
 ﻿using System;
-using System.Text.RegularExpressions;
-using static Notifier.Helpers.Constants.Patterns;
+using static Notifier.Validators.CellphoneNumberValidator;
 
 namespace Notifier.Models
 {
     public sealed class CellPhoneNumber
     {
-        private const int MinLength = 10;
-
         private readonly string value;
 
-        private CellPhoneNumber(string cellPhoneNumber) => value = cellPhoneNumber;
+        private CellPhoneNumber(string cellPhoneNumber) =>
+            value = cellPhoneNumber;
 
-        public static CellPhoneNumber Create(string cellPhoneNumber)
-        {
-            Guard(cellPhoneNumber);
-            return new CellPhoneNumber(cellPhoneNumber);
-        }
+        public static CellPhoneNumber Create(string cellPhoneNumber) =>
+            new(cellPhoneNumber.Validate());
 
-        public static CellPhoneNumber Create(int cellPhoneNumber) => Create($"{cellPhoneNumber}");
-
-        private static void Guard(string cellPhoneNumber)
-        {
-            if (string.IsNullOrWhiteSpace(cellPhoneNumber))
-            {
-                throw new ArgumentNullException(nameof(cellPhoneNumber), "Cell phone number cannot be null");
-            }
-
-            if (cellPhoneNumber.Length < MinLength)
-            {
-                throw new InvalidOperationException($"Cell phone number should be at least {MinLength} digits long");
-            }
-
-            var match = Regex.Match(
-                cellPhoneNumber,
-                CellPhoneNumberRegex,
-                RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture
-            );
-
-            if (!match.Success)
-            {
-                throw new FormatException("Invalid cell phone number format");
-            }
-        }
+        public static CellPhoneNumber Create(int cellPhoneNumber) =>
+            Create($"{cellPhoneNumber}");
 
         public static implicit operator string(CellPhoneNumber cellPhoneNumber) =>
             cellPhoneNumber.value;

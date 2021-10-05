@@ -1,33 +1,16 @@
-﻿using System;
+﻿using static Notifier.Validators.PasswordValidator;
 
 namespace Notifier.Models
 {
     public sealed class Password
     {
-        private const int MinLength = 10;
-
         private readonly string value;
 
-        private Password(string password) => value = password;
+        private Password(string password) =>
+            value = password;
 
-        public static Password Create(string password)
-        {
-            Guard(password);
-            return new Password(password);
-        }
-
-        private static void Guard(string password)
-        {
-            if (string.IsNullOrWhiteSpace(password))
-            {
-                throw new ArgumentNullException(nameof(password), "Password cannot be null or empty");
-            }
-
-            if (password.Length < MinLength)
-            {
-                throw new InvalidOperationException($"Password should be at least {MinLength} digits long");
-            }
-        }
+        public static Password Create(string password) =>
+            new(password.Validate());
 
         public static implicit operator string(Password password) =>
             password.value;
