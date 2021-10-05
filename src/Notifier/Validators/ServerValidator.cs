@@ -1,4 +1,5 @@
 ﻿using System;
+using static Notifier.Helpers.Constants.ErrorMessages.Server;
 
 namespace Notifier.Validators
 {
@@ -8,7 +9,7 @@ namespace Notifier.Validators
         {
             if (string.IsNullOrWhiteSpace(server))
             {
-                throw new ArgumentNullException(nameof(server), "Server cannot be null or empty");
+                throw new ArgumentNullException(nameof(server), CannotBeNullOrEmpty);
             }
 
             return server;
