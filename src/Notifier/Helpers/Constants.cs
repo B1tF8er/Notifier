@@ -41,7 +41,7 @@
 
             internal static class SmtpPort
             {
-                internal const string InvalidPort = "SMPT port is not valid";
+                internal const string InvalidPort = "SMTP port is not valid";
             }
 
             internal static class SqlServerPort

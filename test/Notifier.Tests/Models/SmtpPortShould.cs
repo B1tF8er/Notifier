@@ -5,10 +5,10 @@ using Xunit;
 
 namespace Notifier.Tests.Models
 {
-    public class SmptPortShould
+    public class SmtpPortShould
     {
         [Fact]
-        public void Implicit_Convert_SmptPort_From_Int()
+        public void Implicit_Convert_SmtpPort_From_Int()
         {
             SmtpPort left = 2525;
             int right = left;
@@ -17,7 +17,7 @@ namespace Notifier.Tests.Models
         }
 
         [Fact]
-        public void Return_True_When_SmptPorts_Are_Equal()
+        public void Return_True_When_SmtpPorts_Are_Equal()
         {
             SmtpPort left = 2525;
             SmtpPort right = 2525;
@@ -26,7 +26,7 @@ namespace Notifier.Tests.Models
         }
 
         [Fact]
-        public void Return_False_When_SmptPorts_Are_Not_Equal()
+        public void Return_False_When_SmtpPorts_Are_Not_Equal()
         {
             SmtpPort left = 2525;
             SmtpPort right = 587;
@@ -35,7 +35,7 @@ namespace Notifier.Tests.Models
         }
 
         [Fact]
-        public void Return_False_When_SmptPorts_Are_Equal()
+        public void Return_False_When_SmtpPorts_Are_Equal()
         {
             SmtpPort left = 2525;
             SmtpPort right = 2525;
@@ -44,7 +44,7 @@ namespace Notifier.Tests.Models
         }
 
         [Fact]
-        public void Return_True_When_SmptPorts_Are_Not_Equal()
+        public void Return_True_When_SmtpPorts_Are_Not_Equal()
         {
             SmtpPort left = 2525;
             SmtpPort right = 587;
@@ -53,7 +53,7 @@ namespace Notifier.Tests.Models
         }
 
         [Fact]
-        public void Return_True_When_Both_SmptPorts_Are_Equal()
+        public void Return_True_When_Both_SmtpPorts_Are_Equal()
         {
             SmtpPort left = 2525;
             SmtpPort right = 2525;
@@ -62,7 +62,7 @@ namespace Notifier.Tests.Models
         }
 
         [Fact]
-        public void Return_SmptPort_As_String()
+        public void Return_SmtpPort_As_String()
         {
             SmtpPort left = 2525;
             SmtpPort right = 2525;
@@ -71,7 +71,7 @@ namespace Notifier.Tests.Models
         }
 
         [Fact]
-        public void Return_SmptPort_As_HashCode()
+        public void Return_SmtpPort_As_HashCode()
         {
             SmtpPort left = 2525;
             SmtpPort right = 2525;
@@ -85,9 +85,9 @@ namespace Notifier.Tests.Models
         [InlineData(3)]
         [InlineData(4)]
         [InlineData(5)]
-        public void Throw_ArgumentOutOfRangeException_When_SmptPort_Is_Invalid(int smptPort)
+        public void Throw_ArgumentOutOfRangeException_When_SmtpPort_Is_Invalid(int smtpPort)
         {
-            Func<SmtpPort> create = () => SmtpPort.Create(smptPort);
+            Func<SmtpPort> create = () => SmtpPort.Create(smtpPort);
 
             create.Should().Throw<ArgumentOutOfRangeException>();
         }
